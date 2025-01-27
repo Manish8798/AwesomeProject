@@ -16,7 +16,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.container}>
-      <Text style={{padding: 20}}>Welcome {user.username}!</Text>
+      <Text style={{}}>Welcome {user.username}!</Text>
       <Button title="Logout" onPress={() => handleLogout()} />
     </View>
     </SafeAreaView>

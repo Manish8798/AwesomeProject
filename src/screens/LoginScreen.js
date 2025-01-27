@@ -9,6 +9,39 @@ const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
+    // Username should contain only letters and numbers (no special characters, no spaces, and not empty)
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+  
+    // Password should be at least 8 characters long and include:
+    // - At least one uppercase letter
+    // - At least one special character
+    // - At least one number
+    // - No spaces, no empty string
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])(?=\S)(?!.*\s).{8,}$/;
+  
+    // Check if username and password are not empty
+    if (username.trim() === '') {
+      alert('Username cannot be empty or contain spaces.');
+      return;
+    }
+  
+    if (password.trim() === '') {
+      alert('Password cannot be empty or contain spaces.');
+      return;
+    }
+  
+    // Validate username (no special characters or spaces)
+    if (!usernameRegex.test(username)) {
+      alert('Username should not contain special characters or spaces.');
+      return;
+    }
+  
+    // Validate password
+    if (!passwordRegex.test(password)) {
+      alert('Password must be at least 8 characters long, contain one uppercase letter, one special character, one number, and no spaces.');
+      return;
+    }
+  
     dispatch(login({ id: 1, username }));
     navigation.replace('Home');
   };
@@ -46,7 +79,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-    paddingTop: 50,
   },
   input: {
     height: 50,
@@ -74,7 +106,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 3, // Android shadow
-    height: 50
+    height: 50,
+    marginVertical: 10
   },
   buttonText: {
     color: '#fff',
