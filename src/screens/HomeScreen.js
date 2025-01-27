@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, Dimensions, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice';
 
@@ -24,12 +24,14 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => navigation.navigate('Detail', { item })}>
     <View>
     <View style={styles.gridItem}>
       <Image source={{ uri: item.image }} style={{ width: itemWidth-10, height: itemWidth-10 }} resizeMode='contain' />
     </View>
         <Text style={styles.itemText}>{item.title}</Text>
     </View>
+    </TouchableOpacity>
 );
 
   return (
