@@ -9,7 +9,7 @@ const DetailScreen = ({ route, navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <Image source={{ uri: item.image }} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.price}>${item.price}</Text>
             <Text style={styles.description}>{item.description}</Text>
