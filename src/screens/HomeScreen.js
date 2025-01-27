@@ -23,6 +23,14 @@ const HomeScreen = ({navigation}) => {
       .then(json => setProducts(json));
   }, []);
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button title="Logout" onPress={handleLogout} color="red" />
+      ),
+    });
+  }, [navigation]);
+
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('Detail', { item })}>
     <View>
